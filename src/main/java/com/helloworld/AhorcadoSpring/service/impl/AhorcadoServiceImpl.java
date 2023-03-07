@@ -18,8 +18,6 @@ public class AhorcadoServiceImpl implements AhorcadoService {
 
     public AhorcadoServiceImpl(PalabrasRepository palabrasRepository){
         this.palabrasRepository = palabrasRepository;
-        palabraSecreta = palabrasRepository.elegirPalabraSecreta();
-        palabraAdivinada = ocultarPalabra(palabraSecreta);
 
     }
 
@@ -35,10 +33,10 @@ public class AhorcadoServiceImpl implements AhorcadoService {
     @Override
     public void comprobarCadena(String cadena) {
         if(cadena.length() == 1){
-            comprobarLetra(cadena);
+            comprobarLetra(cadena.toLowerCase());
         }
         else{
-            comprobarPalabra(cadena);
+            comprobarPalabra(cadena.toLowerCase());
         }
         intentos++;
 
@@ -76,12 +74,30 @@ public class AhorcadoServiceImpl implements AhorcadoService {
         return palabraSecreta;
     }
 
+    @Override
     public boolean juegoAcabado(){
-        return (intentos > MAX_INTENTOS) || (palabraSecreta.equals(palabraAdivinada));
+        return (intentos >= MAX_INTENTOS) || (palabraSecreta.equals(palabraAdivinada));
     }
 
+    @Override
     public boolean victoriaConseguida(){
         return victoria;
+    }
+
+    @Override
+    public int getIntentosRestantes(){
+        return MAX_INTENTOS - intentos;
+    }
+
+    @Override
+    public String getPalabraAdivinada(){
+        return palabraAdivinada;
+
+    }
+
+    @Override
+    public String getPalabraSecreta(){
+        return palabraSecreta;
     }
 
 

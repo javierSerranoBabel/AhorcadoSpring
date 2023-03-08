@@ -38,7 +38,7 @@ public class AhorcadoServiceImpl implements AhorcadoService {
         else{
             comprobarPalabra(cadena.toLowerCase());
         }
-        intentos++;
+
 
         if(palabraSecreta.equals(palabraAdivinada)){
             victoria = true;
@@ -48,7 +48,7 @@ public class AhorcadoServiceImpl implements AhorcadoService {
     private void comprobarLetra(String cadena){
         char letra = cadena.charAt(0);
         char[] palabraAdivinadaTMP= palabraAdivinada.toCharArray();
-        if(palabraSecreta.contains(cadena)){
+        if(palabraSecreta.contains(cadena) && !palabraAdivinada.contains(cadena)){
             for(int i = 0; i < palabraAdivinada.length();i++){
                 if(palabraSecreta.charAt(i) == letra){
                     palabraAdivinadaTMP[i] = letra;
@@ -56,12 +56,18 @@ public class AhorcadoServiceImpl implements AhorcadoService {
             }
             palabraAdivinada = new String(palabraAdivinadaTMP);
         }
+        else{
+            intentos++;
+        }
 
     }
     private void comprobarPalabra(String cadena){
         if(palabraSecreta.equals(cadena)){
             palabraAdivinada = palabraSecreta;
 
+        }
+        else{
+            intentos++;
         }
 
     }

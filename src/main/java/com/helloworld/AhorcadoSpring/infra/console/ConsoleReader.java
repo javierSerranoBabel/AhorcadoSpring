@@ -4,8 +4,6 @@ import com.helloworld.AhorcadoSpring.service.AhorcadoService;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.text.ParseException;
-import java.util.Date;
 import java.util.Scanner;
 
 @Component

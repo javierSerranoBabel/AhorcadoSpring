@@ -4,7 +4,7 @@ import com.helloworld.AhorcadoSpring.repository.PalabrasRepository;
 import com.helloworld.AhorcadoSpring.service.AhorcadoService;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+
 
 @Service
 public class AhorcadoServiceImpl implements AhorcadoService {
@@ -47,14 +47,14 @@ public class AhorcadoServiceImpl implements AhorcadoService {
     }
     private void comprobarLetra(String cadena){
         char letra = cadena.charAt(0);
-        char[] palabraAdivinadaTMP= palabraAdivinada.toCharArray();
+        char[] palabraAdivinadaActualizada= palabraAdivinada.toCharArray();
         if(palabraSecreta.contains(cadena) && !palabraAdivinada.contains(cadena)){
             for(int i = 0; i < palabraAdivinada.length();i++){
                 if(palabraSecreta.charAt(i) == letra){
-                    palabraAdivinadaTMP[i] = letra;
+                    palabraAdivinadaActualizada[i] = letra;
                 }
             }
-            palabraAdivinada = new String(palabraAdivinadaTMP);
+            palabraAdivinada = new String(palabraAdivinadaActualizada);
         }
         else{
             intentos++;
